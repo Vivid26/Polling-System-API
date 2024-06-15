@@ -1,0 +1,2 @@
+{"level":"error","message":"Timestamp: Sat Jun 15 2024 16:03:53 GMT+0530 (India Standard Time)Req URL :/api/question/delete/666d46e11764f3ce42213baf Error message: Please check again the question id. OR Question can't be deleted if options voting present.","service":"request-logging"}
+{"level":"error","message":"Timestamp: Sat Jun 15 2024 16:05:05 GMT+0530 (India Standard Time)Req URL :/api/question/delete/666c4d8b57008b96d95742fd Error message: Please check again the question id. OR Question can't be deleted if options voting present.","service":"request-logging"}

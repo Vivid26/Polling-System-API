@@ -1,0 +1,428 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0",
+        "description": "API for Polling System Application",
+        "title": "Polling System Application API Collection"
+    },
+    "host": "localhost:3000",
+    "paths": {
+        "/api/question/create": {
+            "post": {
+                "tags": [
+                    "Question"
+                ],
+                "summary": "Add Question",
+                "description": "Add a new question to polling system.",
+                "operationId": "createQuestion",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Question Details",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "question": {
+                                    "type": "string",
+                                    "required": true
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "New question created successfully."
+                    },
+                    "400": {
+                        "description": "Please check again the data provided by you while creating a question."
+                    },
+                    "500": {
+                        "description": "Internal Server error while creating a question."
+                    }
+                }
+            }
+        },
+        "/api/question/create-option/{questionId}": {
+            "post": {
+                "tags": [
+                    "Question"
+                ],
+                "summary": "Add option for a question.",
+                "description": "Add a new option to polling system.",
+                "operationId": "createOptionForQuestion",
+                "parameters": [
+                    {
+                        "name": "questionId",
+                        "in": "path",
+                        "description": "The id of the question.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Option Details",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "option": {
+                                    "type": "string",
+                                    "required": true
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "New option created successfully."
+                    },
+                    "400": {
+                        "description": "Please check again the data provided by you while creating a option."
+                    },
+                    "500": {
+                        "description": "Internal Server error while creating a question."
+                    }
+                }
+            }
+        },
+        "/api/question/get/{questionId}": {
+            "get": {
+                "tags": [
+                    "Question"
+                ],
+                "summary": "Question Details",
+                "description": "To fetch a question details",
+                "operationId": "getQuestionById",
+                "parameters": [
+                    {
+                        "name": "questionId",
+                        "in": "path",
+                        "description": "The id of the question.",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "You will find respective question as a result."
+                    },
+                    "404": {
+                        "description": "Please check again the question id."
+                    },
+                    "500": {
+                        "description": "Internal Server error while creating a question."
+                    }
+                }
+            }
+        },
+        "/api/question/get-all": {
+            "get": {
+                "tags": [
+                    "Question"
+                ],
+                "summary": "All question details",
+                "description": "To get all question details",
+                "operationId": "getAllQuestions",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "type": "integer",
+                        "description": "",
+                        "required": true
+                    },
+                    {
+                        "name": "pageSize",
+                        "in": "query",
+                        "type": "integer",
+                        "description": "",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "You will find all questions in the result."
+                    },
+                    "404": {
+                        "description": "Oops! No questions in the database."
+                    },
+                    "500": {
+                        "description": "Internal Server error while creating a question."
+                    }
+                }
+            }
+        },
+        "/api/question/edit/{questionId}": {
+            "put": {
+                "tags": [
+                    "Question"
+                ],
+                "summary": "Edit question",
+                "description": "",
+                "operationId": "editQuestion",
+                "parameters": [
+                    {
+                        "name": "questionId",
+                        "in": "path",
+                        "description": "The id of the question.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Question Details",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "question": {
+                                    "type": "string",
+                                    "required": true
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Question edited successfully."
+                    },
+                    "400": {
+                        "description": "Oops! No questions in the database."
+                    },
+                    "500": {
+                        "description": "Internal Server error while creating a question."
+                    }
+                }
+            }
+        },
+        "/api/question/delete/{questionId}": {
+            "delete": {
+                "tags": [
+                    "Question"
+                ],
+                "summary": "Delete a question.",
+                "description": "Deletes a mentioned id question.",
+                "operationId": "deleteQuestion",
+                "parameters": [
+                    {
+                        "name": "questionId",
+                        "in": "path",
+                        "description": "The id of the question to delete.",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Question deleted successfully."
+                    },
+                    "400": {
+                        "description": "Please check again the question id. OR Question can't be deleted if options voting present."
+                    },
+                    "500": {
+                        "description": "Internal Server error while creating a question."
+                    }
+                }
+            }
+        },
+        "/api/option/get-total-votes/{optionId}": {
+            "get": {
+                "tags": [
+                    "Option"
+                ],
+                "summary": "Option Details",
+                "description": "To get total votes to a option.",
+                "operationId": "getTotalVotesForOption",
+                "parameters": [
+                    {
+                        "name": "optionId",
+                        "in": "path",
+                        "description": "The id of the optionId.",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "You will find total votes as a result."
+                    },
+                    "404": {
+                        "description": "Please check again the option id."
+                    },
+                    "500": {
+                        "description": "Internal Server error while creating a question."
+                    }
+                }
+            }
+        },
+        "/api/option/add-vote/{optionId}": {
+            "post": {
+                "tags": [
+                    "Option"
+                ],
+                "summary": "Give vote to option",
+                "description": "Give vote to a option.",
+                "operationId": "addVoteForOption",
+                "parameters": [
+                    {
+                        "name": "optionId",
+                        "in": "path",
+                        "description": "The id of the option.",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Thanks for your vote."
+                    },
+                    "400": {
+                        "description": "Please check again the option id."
+                    },
+                    "500": {
+                        "description": "Internal Server error while creating a question."
+                    }
+                }
+            }
+        },
+        "/api/option/edit/{optionId}": {
+            "put": {
+                "tags": [
+                    "Option"
+                ],
+                "summary": "Edit option",
+                "description": "",
+                "operationId": "editOption",
+                "parameters": [
+                    {
+                        "name": "optionId",
+                        "in": "path",
+                        "description": "The id of the option.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Option Details",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "option": {
+                                    "type": "string",
+                                    "required": true
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Option edited successfully."
+                    },
+                    "400": {
+                        "description": "Please check again the option id."
+                    },
+                    "500": {
+                        "description": "Internal Server error while creating a question."
+                    }
+                }
+            }
+        },
+        "/api/option/delete/{optionId}": {
+            "delete": {
+                "tags": [
+                    "Option"
+                ],
+                "summary": "Delete a option.",
+                "description": "Deletes a mentioned id option.",
+                "operationId": "deleteOption",
+                "parameters": [
+                    {
+                        "name": "optionId",
+                        "in": "path",
+                        "description": "The id of the option to delete.",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Option deleted successfully."
+                    },
+                    "400": {
+                        "description": "Please check again the option id. OR This option has voting so can't be deleted."
+                    },
+                    "500": {
+                        "description": "Internal Server error while creating a question."
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "Question": {
+            "type": "object",
+            "description": "An instance of Question Class Schema.",
+            "properties": {
+                "_id": {
+                    "type": "string"
+                },
+                "question": {
+                    "type": "string",
+                    "required": true
+                },
+                "options": {
+                    "type": "array"
+                }
+            }
+        },
+        "Option": {
+            "type": "object",
+            "description": "An instance of Option Class Schema.",
+            "properties": {
+                "_id": {
+                    "type": "string"
+                },
+                "question": {
+                    "type": "string",
+                    "required": true
+                },
+                "option": {
+                    "type": "string",
+                    "required": true
+                },
+                "votes": {
+                    "type": "integer",
+                    "required": true
+                },
+                "link_to_vote": {
+                    "type": "String",
+                    "required": true
+                }
+            }
+        },
+        "ApiResponse": {
+            "type": "object",
+            "description": "Every response object structure.",
+            "properties": {
+                "success": {
+                    "type": "boolean",
+                    "required": true
+                },
+                "message": {
+                    "type": "string",
+                    "required": true
+                },
+                "result": {
+                    "type": "array",
+                    "required": false
+                }
+            }
+        }
+    }
+}
