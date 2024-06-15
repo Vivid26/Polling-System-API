@@ -5,7 +5,7 @@
         "description": "API for Polling System Application",
         "title": "Polling System Application API Collection"
     },
-    "host": "localhost:3000",
+    "host": "polling-system-api-s9fj.onrender.com",
     "paths": {
         "/api/question/create": {
             "post": {

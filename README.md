@@ -38,6 +38,8 @@ $ npm start
 ```
 now you will see that server is running at http://127.0.0.1:3000
 
+Note:
+- Change the value of "host" key to "localhost:3000" in the swagger.json file.
 
 ## Usage
 
@@ -56,11 +58,11 @@ Follow below journey to know insights of application.
 ## Deployment
 
 This project is deployed on Render app hosting service. 
-Visit [Polling System]() to see live hosted app.
-Visit [Swagger Polling System API Documentation]() to see documentation along with functionality.
+Visit [Polling System](https://polling-system-api-s9fj.onrender.com/) to see live hosted app.
+Visit [Swagger Polling System API Documentation](https://polling-system-api-s9fj.onrender.com/polling-system-api-documentation) to see documentation along with the functionality.
 
 ## Testing
-Visit [Polling System Postman Collection]() to test all API's locally.
+Visit [Polling System Postman Collection](https://www.postman.com/altimetry-observer-9841706/workspace/testing/collection/32894574-34d29b8a-bf07-45d9-9c90-84f7c871ed97?action=share&creator=32894574) to test all API's locally.
 
 # Technologies
 
